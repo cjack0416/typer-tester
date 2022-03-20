@@ -3,6 +3,10 @@ import {startTime} from './timer.js';
 function startTest() {
     fillText();
     startTime();
+
+    let currChar = 0;
+
+    
 }
 
 function fillText() {
