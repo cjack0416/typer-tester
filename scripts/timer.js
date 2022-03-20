@@ -1,14 +1,14 @@
+let time = 10;
+
 function startTime() {
-    let time = 60;
 
-    setInterval(showTime, 1000);
+    const interval = setInterval(function() {
+        document.getElementById("timer").innerHTML = time;
+        time -= 1;
     
-    if (time == 0) return;
-}
+        if (time === -1) clearInterval(interval);
+    }, 1000);
 
-function showTime() {
-    document.getElementById("timer").innerHTML = time;
-    time -= 1;
 }
 
 export {startTime};

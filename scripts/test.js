@@ -16,4 +16,6 @@ function fillText() {
     qui officia deserunt mollit anim id est laborum.`
 }
 
-startTest();
+document.querySelector("button").addEventListener("click", () => {
+    startTest();
+});
