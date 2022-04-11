@@ -3,12 +3,20 @@ import {startTime} from './timer.js';
 let typingText;
 let currChar = 0;
 let typingTextLen;
+let missCount = 0; 
 
 function startTest() {
     fillText();
-    //startTime();
+    startTime();
     
     document.getElementById(`index-${currChar}`).style.backgroundColor = "green";
+    
+    const missEl = document.getElementById("miss-count");
+    missEl.style.visibility = "visible";
+    missEl.innerHTML = `miss count: ${missCount}`;
+
+    document.querySelector("button").style.visibility = "hidden";
+
 }
 
 function fillText() {
@@ -45,6 +53,11 @@ document.addEventListener("keypress", (e) => {
     if (e.key === typingText.charAt(currChar)) {
         document.getElementById(`index-${currChar}`).style.backgroundColor = "white";
         currChar++;
+    }
+
+    else {
+        missCount++;
+        document.getElementById("miss-count").innerHTML = `miss count: ${missCount}`;
     }
 
     if (currChar != typingTextLen) {
