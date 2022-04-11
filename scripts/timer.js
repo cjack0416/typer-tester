@@ -1,3 +1,6 @@
+import {currChar} from "./util.js"
+
+let wpm;
 let timer = 60;
 let timePerMin;
 
@@ -7,11 +10,15 @@ function startTime() {
         document.getElementById("timer").innerHTML = `time left: ${timer}`;
         timer--;
 
-        timePerMin = (timer - 60) / 60;
+        timePerMin = (60 - timer) / 60;
+
+        wpm = Math.round((currChar / 5) / timePerMin);
+
+        document.getElementById("wpm").innerHTML = `wpm: ${wpm}`;
     
-        if (timer === -1) clearInterval(interval);
+        if (timer < 0) clearInterval(interval);
     }, 1000);
 
 }
 
-export {startTime, timePerMin};
+export {startTime, timePerMin, timer};
