@@ -2,6 +2,6 @@ p, span {
     font-size: 1.5rem;
 }
 
-#miss-count {
+#miss-count, #wpm {
     visibility: hidden;
 }
