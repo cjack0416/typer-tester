@@ -1,14 +1,17 @@
-let time = 10;
+let timer = 60;
+let timePerMin;
 
 function startTime() {
 
     const interval = setInterval(function() {
-        document.getElementById("timer").innerHTML = `time left: ${time}`;
-        time -= 1;
+        document.getElementById("timer").innerHTML = `time left: ${timer}`;
+        timer--;
+
+        timePerMin = (timer - 60) / 60;
     
-        if (time === -1) clearInterval(interval);
+        if (timer === -1) clearInterval(interval);
     }, 1000);
 
 }
 
-export {startTime};
+export {startTime, timePerMin};
