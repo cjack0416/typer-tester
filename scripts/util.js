@@ -36,15 +36,16 @@ document.addEventListener("keypress", (e) => {
         if (e.key === typingText.charAt(currChar)) {
             document.getElementById(`index-${currChar}`).style.backgroundColor = "white";
             currChar++;
+
+            if (currChar != typingTextLen) {
+                document.getElementById(`index-${currChar}`).style.backgroundColor = "green";
+            }
         }
 
         else {
             missCount++;
             document.getElementById("miss-count").innerHTML = `miss count: ${missCount}`;
-        }
-
-        if (currChar != typingTextLen) {
-            document.getElementById(`index-${currChar}`).style.backgroundColor = "green"
+            document.getElementById(`index-${currChar}`).style.backgroundColor = "red";
         }
     }
 });
