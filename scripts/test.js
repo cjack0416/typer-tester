@@ -1,11 +1,15 @@
 import {startTime} from './timer.js';
 import {fillText} from './util.js';
 
+const currColor = "#98F87E";
+
 function startTest() {
     fillText();
     startTime();
     
-    document.getElementById("index-0").style.backgroundColor = "green";
+    const firstEl = document.getElementById("index-0");
+    firstEl.style.backgroundColor = currColor;
+    firstEl.style.textDecoration = "underline";
     
     const missEl = document.getElementById("miss-count");
     const wpmEl = document.getElementById("wpm");

@@ -1,6 +1,7 @@
-import {currChar} from "./util.js"
+import {currChar, uncorrectedMissCount, reset} from "./util.js"
 
 let wpm;
+let grossWPM;
 let timer = 60;
 let timePerMin;
 
@@ -10,18 +11,34 @@ function startTime() {
         document.getElementById("timer").innerHTML = `time left: ${timer}`;
         timer--;
     
-        if (timer < 0) clearInterval(interval);
+        if (timer < 0) {
+            clearInterval(interval);
+        }
     }, 1000);
     
     const wpmInterval = setInterval(function() {
         timePerMin = (60 - timer) / 60;
 
-        wpm = timePerMin !== 0 ? Math.round((currChar / 5) / timePerMin) : 0;
+        grossWPM = timePerMin !== 0 ? currChar / 5 : 0;
 
-        document.getElementById("wpm").innerHTML = `wpm: ${wpm}`;
+        wpm = timePerMin !== 0 ? Math.round((grossWPM - uncorrectedMissCount) / timePerMin) : 0;
 
-        if (timer < 0) clearInterval(wpmInterval);
+        wpm > 0 ? document.getElementById("wpm").innerHTML = `wpm: ${wpm}`
+        : document.getElementById("wpm").innerHTML = `wpm: 0`;
+
+        if (timer < 0) {
+            clearInterval(wpmInterval);
+            document.querySelector("button").style.visibility = "visible";
+            document.getElementById("btn").innerHTML = "Retry";
+
+            wpm = 0;
+            grossWPM = 0;
+            timer = 60;
+            timePerMin = 0;
+            
+            reset();
+        }
     }, 1);
 }
 
-export {startTime, timePerMin, timer};
+export {startTime, timePerMin, timer, wpm, grossWPM};
